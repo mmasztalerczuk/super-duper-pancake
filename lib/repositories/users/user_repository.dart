@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,7 +10,7 @@ class UserRepository {
     @required String username,
     @required String password,
   }) async {
-    var url = 'https://3e2f05b8.ngrok.io/api-token-auth/';
+    var url = DotEnv().env['API_URL'] + '/api-token-auth/';
     var response = await http.post(url,
         body: {"username": username, "email": "", "password": password});
 
@@ -26,7 +27,8 @@ class UserRepository {
     @required String password,
     @required String email,
   }) async {
-    var url = 'https://3e2f05b8.ngrok.io/api/v1/rest-auth/registration/';
+    var url = DotEnv().env['API_URL'] + '/api/v1/rest-auth/registration/';
+
     var response = await http.post(url,
         body: {"username": username,
                "email": email,
