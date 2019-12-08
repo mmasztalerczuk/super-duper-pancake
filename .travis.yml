@@ -12,9 +12,7 @@ addons:
   sonarcloud:
     organization: "mmasztalerczuk"
     token:
-      secure: "q8LkiDJ2jrFzO1V658RK/cSGECYnRurw0gPJNzD+7FETecNDnpx3aP2yFhu5/Bt7G0u5kDV8jJTBZNMZsu9v/R14giaLMEw630x8yVko/nrK+K9Jim8UkLnx8qIDqXqHCB79TN/vmExzWmFHgtMUi1dUmApHuNDNw6MGl3dsJJlPTprdICG9ShsCETgG+y+1yQGQXHkSjkVO2vZAZALUtFpahz+VvERkoN0dwEc9IHdVjcNu1S0hurxfQQj/iBA12qTE7K9H+qaWnpfrpYChpaPVWshxsB9nI8W9HNyqvppHzH+zyn2/
-8n1aUMhaYkS3j2Ts+Bt9N7OJYsjdAffg+nUEMDN5GQ7/AYT8rEPtrC7qWBqCJ01cIARSw39jgMRJlwVeUJrLlBXBWAfKgAe6KInPgbGZ25eUL2P5Q8jmQ0AIdOqrNgD4ffTDFI02LhO1cEx50TUpEcovUs+qDc5eQv/aW+WPnuE046UK1t4+iFSn46RRSh2WZjRSI7W/s8uYt3V1zSwORR8jBYMlqhKjcAdRMN0jSBSAm5gh56eG25uzfZrQDmLUKIx7IWUzAWZaCzjo24s5AAI1pDfx/2fN6j9k6I2C4VeI2/j7OqkUYjIiMY8Kx4k
-61raf5Fh9+VhpVOm5nXINdytdv9ACuneRLKCxcer+GYVKSgj5ijItueQ=" # encrypted value of your token    
+      secure: "q8LkiDJ2jrFzO1V658RK/cSGECYnRurw0gPJNzD+7FETecNDnpx3aP2yFhu5/Bt7G0u5kDV8jJTBZNMZsu9v/R14giaLMEw630x8yVko/nrK+K9Jim8UkLnx8qIDqXqHCB79TN/vmExzWmFHgtMUi1dUmApHuNDNw6MGl3dsJJlPTprdICG9ShsCETgG+y+1yQGQXHkSjkVO2vZAZALUtFpahz+VvERkoN0dwEc9IHdVjcNu1S0hurxfQQj/iBA12qTE7K9H+qaWnpfrpYChpaPVWshxsB9nI8W9HNyqvppHzH+zyn2/8n1aUMhaYkS3j2Ts+Bt9N7OJYsjdAffg+nUEMDN5GQ7/AYT8rEPtrC7qWBqCJ01cIARSw39jgMRJlwVeUJrLlBXBWAfKgAe6KInPgbGZ25eUL2P5Q8jmQ0AIdOqrNgD4ffTDFI02LhO1cEx50TUpEcovUs+qDc5eQv/aW+WPnuE046UK1t4+iFSn46RRSh2WZjRSI7W/s8uYt3V1zSwORR8jBYMlqhKjcAdRMN0jSBSAm5gh56eG25uzfZrQDmLUKIx7IWUzAWZaCzjo24s5AAI1pDfx/2fN6j9k6I2C4VeI2/j7OqkUYjIiMY8Kx4k61raf5Fh9+VhpVOm5nXINdytdv9ACuneRLKCxcer+GYVKSgj5ijItueQ=" # encrypted value of your token    
 before_script:
   - git clone https://github.com/flutter/flutter.git -b beta
   - ./flutter/bin/flutter doctor
