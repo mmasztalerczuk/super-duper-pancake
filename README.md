@@ -1,6 +1,7 @@
 # questlly
 
 [![Build Status](https://travis-ci.com/mmasztalerczuk/super-duper-pancake.svg?branch=master)](https://travis-ci.com/mmasztalerczuk/super-duper-pancake)
+[![Coverage Status](https://coveralls.io/repos/github/mmasztalerczuk/super-duper-pancake/badge.svg)](https://coveralls.io/github/mmasztalerczuk/super-duper-pancake)
 
 A new Flutter application.
 
