@@ -1,6 +1,7 @@
 os:
   - linux
 sudo: false
+dist: trusty
 addons:
   apt:
     # Flutter depends on /usr/lib/x86_64-linux-gnu/libstdc++.so.6 version GLIBCXX_3.4.18
@@ -9,6 +10,10 @@ addons:
     packages:
       - libstdc++6
       - fonts-droid-fallback
+    sonarcloud:
+      organization: "mmasztalerczuk"
+      token:
+        secure: "sonar_key" # encrypted value of your token    
 before_script:
   - git clone https://github.com/flutter/flutter.git -b beta
   - ./flutter/bin/flutter doctor
@@ -16,6 +21,7 @@ before_script:
   - gem install coveralls-lcov
 script:
   - ./flutter/bin/flutter test --coverage
+  - sonar-scanner
 after_success:
   - coveralls-lcov coverage/lcov.info  
 cache:
