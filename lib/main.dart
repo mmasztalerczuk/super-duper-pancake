@@ -39,7 +39,7 @@ Future main() async {
 
 
   BlocSupervisor.delegate = SimpleBlocDelegate();
-  final userRepository = UserRepository();
+  final userRepository = UserRepository(configuration: DotEnv().env);
   runApp(
     BlocProvider<AuthenticationBloc>(
       builder: (context) {

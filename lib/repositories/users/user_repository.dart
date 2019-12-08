@@ -9,7 +9,13 @@ import 'package:questlly/common/exceptions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserRepository {
-  final String apiUrl = DotEnv().env['API_URL'];
+  String apiUrl;
+  final Map configuration;
+
+  UserRepository({@required this.configuration})
+      : assert(configuration != null) {
+    this.apiUrl = this.configuration['API_URL'];
+  }
 
   Future<String> authenticate({
     @required String username,
@@ -44,7 +50,6 @@ class UserRepository {
       "password1": password,
       "password2": password
     });
-
 
     print(response.body);
 
