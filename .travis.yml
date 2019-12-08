@@ -1,28 +1,27 @@
 dist: trusty
 os:
-  - linux
+- linux
 sudo: false
 addons:
   apt:
-    # Flutter depends on /usr/lib/x86_64-linux-gnu/libstdc++.so.6 version GLIBCXX_3.4.18
     sources:
-      - ubuntu-toolchain-r-test # if we don't specify this, the libstdc++6 we get is the wrong version
+    - ubuntu-toolchain-r-test
     packages:
-      - libstdc++6
+    - libstdc++6
   sonarcloud:
-    organization: "mmasztalerczuk"
+    organization: mmasztalerczuk
     token:
-      secure: "q8LkiDJ2jrFzO1V658RK/cSGECYnRurw0gPJNzD+7FETecNDnpx3aP2yFhu5/Bt7G0u5kDV8jJTBZNMZsu9v/R14giaLMEw630x8yVko/nrK+K9Jim8UkLnx8qIDqXqHCB79TN/vmExzWmFHgtMUi1dUmApHuNDNw6MGl3dsJJlPTprdICG9ShsCETgG+y+1yQGQXHkSjkVO2vZAZALUtFpahz+VvERkoN0dwEc9IHdVjcNu1S0hurxfQQj/iBA12qTE7K9H+qaWnpfrpYChpaPVWshxsB9nI8W9HNyqvppHzH+zyn2/8n1aUMhaYkS3j2Ts+Bt9N7OJYsjdAffg+nUEMDN5GQ7/AYT8rEPtrC7qWBqCJ01cIARSw39jgMRJlwVeUJrLlBXBWAfKgAe6KInPgbGZ25eUL2P5Q8jmQ0AIdOqrNgD4ffTDFI02LhO1cEx50TUpEcovUs+qDc5eQv/aW+WPnuE046UK1t4+iFSn46RRSh2WZjRSI7W/s8uYt3V1zSwORR8jBYMlqhKjcAdRMN0jSBSAm5gh56eG25uzfZrQDmLUKIx7IWUzAWZaCzjo24s5AAI1pDfx/2fN6j9k6I2C4VeI2/j7OqkUYjIiMY8Kx4k61raf5Fh9+VhpVOm5nXINdytdv9ACuneRLKCxcer+GYVKSgj5ijItueQ=" # encrypted value of your token    
+      secure: BuCG1F8ji7AUc0rghRWxh3D7Ea+JfsvG9fj2Wi55rYf58lZk7evRaJ6mEMEJmW9axhtIUy05gUFSk0OzVfbHfMchxFc+KkPe0K0IyM62gfMX+q1uT5PgRwvrmGMa1YWSJhxCA2PDY0FxBBj5A176nbMWwn4+ERv45IZ+xJizmOC7r8xY+v2eG3LjXoDoW5kgSvTaOiSEycY3RRKcWY8t2dDGojnNIGvZpKBN9t9mgNnZlvPJBSBfF6/JsfpbD+UcFnkYF0q/aa/Al7DFXppI/wIfbr4I7actf09TlrgmDfdZ4lnoyv++oWQW+rYXIBeKByweQoPwf9jM67KMRKqk/YIfmCxnGGtIGrpUMrPJV17h8eAoXigItjqQHkLMUZBziHnYTrDV5f7k8IS8Bq+YH8QtSJXSmqpyCH10ECDqME7xcdY9nfrbSkngpK2TqF/dObY/nft04MiW9jy8sC9QGEnR2hUDQB1Jmad726xJ9iQRrtONRxPxsjnsqN1pInCOx6macHzDZNrfylw6orRVNytT72n8rkepy6BSrcfdgUE+KNh1cQqmZek6oNovxpKL9mopBgMZRsFDhuUXFwZw9+vytA1m7rZVSfXO0c1ZFLDtF2VurfBLqrc5sf3g7+3owW6ZNTiqRS0UVGGe7CbrtOE+80h79DeK2uPkgINgEys=
 before_script:
-  - git clone https://github.com/flutter/flutter.git -b beta
-  - ./flutter/bin/flutter doctor
-  - cp .env_example .env
-  - gem install coveralls-lcov
+- git clone https://github.com/flutter/flutter.git -b beta
+- "./flutter/bin/flutter doctor"
+- cp .env_example .env
+- gem install coveralls-lcov
 script:
-  - ./flutter/bin/flutter test --coverage
-  - sonar-scanner
+- "./flutter/bin/flutter test --coverage"
+- sonar-scanner
 after_success:
-  - coveralls-lcov coverage/lcov.info  
+- coveralls-lcov coverage/lcov.info
 cache:
   directories:
-    - $HOME/.pub-cache
+  - "$HOME/.pub-cache"
