@@ -1,25 +1,40 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
+import 'package:questlly/common/common.dart';
+import 'package:questlly/common/exceptions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserRepository {
+  String apiUrl;
+  final Map configuration;
+
+  UserRepository({@required this.configuration})
+      : assert(configuration != null) {
+    this.apiUrl = this.configuration['API_URL'];
+  }
+
   Future<String> authenticate({
     @required String username,
     @required String password,
   }) async {
-    var url = DotEnv().env['API_URL'] + '/api-token-auth/';
-    var response = await http.post(url,
-        body: {"username": username, "email": "", "password": password});
+    var url = apiUrl + '/api-token-auth/';
+    var responseJson;
 
-    print(response.body);
+    try {
+      final response = await http.post(url,
+          body: {"username": username, "email": "", "password": password});
+      responseJson = returnResponse(response);
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
 
-    Map response_map = jsonDecode(response.body);
-    persistToken(response_map['token']);
+    persistToken(responseJson['token']);
 
-    return response_map['token'];
+    return responseJson['token'];
   }
 
   Future<String> register({
@@ -29,11 +44,12 @@ class UserRepository {
   }) async {
     var url = DotEnv().env['API_URL'] + '/api/v1/rest-auth/registration/';
 
-    var response = await http.post(url,
-        body: {"username": username,
-               "email": email,
-               "password1": password,
-               "password2": password});
+    var response = await http.post(url, body: {
+      "username": username,
+      "email": email,
+      "password1": password,
+      "password2": password
+    });
 
     print(response.body);
 
@@ -57,7 +73,6 @@ class UserRepository {
 
   Future<bool> hasToken() async {
     final prefs = await SharedPreferences.getInstance();
-
 
     final token = prefs.getString('token') ?? 0;
     return false;

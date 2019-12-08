@@ -12,7 +12,8 @@ addons:
 before_script:
   - git clone https://github.com/flutter/flutter.git -b beta
   - ./flutter/bin/flutter doctor
-script:
+  - cp .env_example .env
+scrip:
   - ./flutter/bin/flutter test
 cache:
   directories:
