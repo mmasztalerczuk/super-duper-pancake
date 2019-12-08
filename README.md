@@ -1,5 +1,7 @@
 # questlly
 
+[![Build Status](https://travis-ci.com/mmasztalerczuk/super-duper-pancake.svg?branch=master)](https://travis-ci.com/mmasztalerczuk/super-duper-pancake)
+
 A new Flutter application.
 
 ## Getting Started
