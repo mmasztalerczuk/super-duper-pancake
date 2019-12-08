@@ -1,3 +1,24 @@
+def static getenv(path = "../.env") {
+    def env = [:]
+
+    def file = new File(path)
+    if (file.exists()) {
+        file.eachLine { line ->
+            def (name, value) = line.tokenize("=")
+            env[name.trim()] = value.trim()
+        }
+    }
+    else {
+        throw new GradleException(".env doesn't exist")
+    }
+
+    return env
+}
+def env = getenv()
+if (env['API_URL'] == null) {
+    throw new GradleException("Missing API_URL env variable")
+}
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {

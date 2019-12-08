@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:questlly/repositories/users/user_repository.dart';
 import 'package:questlly/splash/splash_page.dart';
@@ -11,7 +12,6 @@ import 'authentication/authentication_event.dart';
 import 'authentication/authentication_state.dart';
 import 'common/loading_indicator.dart';
 import 'home/home_page.dart';
-import 'login/login_page.dart';
 import 'mainpage/main_page.dart';
 
 class SimpleBlocDelegate extends BlocDelegate {
@@ -34,7 +34,10 @@ class SimpleBlocDelegate extends BlocDelegate {
   }
 }
 
-void main() {
+Future main() async {
+  await DotEnv().load('.env');
+
+
   BlocSupervisor.delegate = SimpleBlocDelegate();
   final userRepository = UserRepository();
   runApp(
